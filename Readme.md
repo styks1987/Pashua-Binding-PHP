@@ -15,6 +15,23 @@ This repository contains two source code files:
 
 Of course, you will need Pashua on your Mac to run the example. The code expects Pashua.app in one of the “typical” locations, such as the global or the user’s “Applications” folder, or in the folder which contains “example.php”, but will prefer a Pashua version in `/Volumes/Pashua` (which is the mounted path of the Pashua distribution disk image).
 
+Converting from php config array to coniguration string
+```php
+$configArray = [
+    'indesign_version' => [
+          'type' => 'radiobutton',
+          'label' => 'Indesign Version',
+          'default' => '11',
+          ['option' => 11],
+          ['option' => 12]
+      ]
+  ];
+
+$configString = \BlueM\Pashua::arrayToConfig($configArray);
+
+$result = \BlueM\Pashua::showDialog($configString);
+
+```
 
 Compatibility
 =============

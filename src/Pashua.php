@@ -103,4 +103,34 @@ class Pashua
             'Unable to locate Pashua. Tried to find it in: ' . join(', ', $paths)
         );
     }
+
+    /**
+     * Convert a php array to a config
+     * @param $field
+     * @param string $passedPrefix
+     * @return string
+     */
+    public static function arrayToConfig($field, $passedPrefix = '')
+    {
+        $prefix = $passedPrefix == '' ? '' : $passedPrefix . '.';
+        if (is_array($field)){
+            $config = '';
+            foreach($field as $key => $value){
+                if(is_array($value)){
+                    if(!is_int($key)) {
+                        $config .= self::ArrayToConfig($value, $prefix . $key);
+                    } else {
+                        $config .= self::ArrayToConfig($value, $passedPrefix);
+                    }
+                } else if(is_numeric($key)){
+                    $config .= $prefix . $key . '=' . $value . PHP_EOL;
+                } else {
+                    $config .= $prefix . $key . '=' . $value . PHP_EOL;
+                }
+            }
+            return $config;
+        }
+
+        return $prefix . '=' . $field . PHP_EOL;
+    }
 }

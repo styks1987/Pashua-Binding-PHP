@@ -1,0 +1,17 @@
+{
+    "name": "styks1987/pashua-binding-php",
+    "authors": [
+        {
+            "name": "styks1987",
+            "email": "mike@saymikeo.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit" : "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlueM\\": "src"
+        }
+    }
+}
